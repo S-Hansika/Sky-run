@@ -56,12 +56,14 @@ function draw(){
         score= score+ Math.round(getFrameRate()/60);
         sky.velocityX= -(6+3*score/100);
 
-        if(keyDown("SPACE")){
+        if(keyDown("SPACE")|| touches.length>0){
             plane.velocityY= -4;
             plane.changeImage("fly", plane2Img);
+            touches=[];
         }
-        if(keyWentUp("SPACE")){
+        if(keyWentUp("SPACE")|| touches.length<0){
             plane.changeImage("plane", plane2Img);
+            touches=[];
         }
         plane.velocityY+= 0.3;
 
@@ -95,8 +97,9 @@ function draw(){
 
         fuelGroup.setLifetimeEach(-1);
 
-        if(keyDown("SPACE")){
+        if(keyDown("SPACE")||touches.length>0){
             reset();
+            touches= [];
         }
     }
 
